@@ -60,9 +60,11 @@ Resources:
         IntegrationHttpMethod: GET
         Type: AWS_PROXY
         Uri: !Sub
-          - arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/${lambdaArn}/invocations
+          - arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambdaFunction.Arn}/invocations
           - lambdaArn: !GetAtt lambdaFunction.Arn
-      ResourceId: !GetAtt apiGateway.RootResourceId
+      ResourceId: !GetAtt
+        - apiGateway
+        - RootResourceId
       RestApiId: twitter-api
 
   apiGatewayDeployment:
