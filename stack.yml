@@ -51,19 +51,30 @@ Resources:
           - REGIONAL
       Name: twitter-api
 
+  apiGatewayResource:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      RestApiId: !Ref apiGateway
+      ParentId: !GetAtt
+        - apiGateway
+        - RootResourceId
+      PathPart: !Sub sample-lambda-${Environment}
+    DependsOn:
+      - apiGateway
+
   apiGatewayRootMethod:
     Type: AWS::ApiGateway::Method
     Properties:
       AuthorizationType: NONE
-      HttpMethod: GET
+      HttpMethod: POST
       Integration:
         IntegrationHttpMethod: POST
         Type: AWS_PROXY
         Uri: !Sub
           - arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambdaFunction.Arn}/invocations
           - lambdaArn: !GetAtt lambdaFunction.Arn
-      ResourceId: !GetAtt apiGateway.RootResourceId
-      RestApiId: twitter-api
+      ResourceId: !Ref apiGatewayResource
+      RestApiId: !Ref apiGateway
 
   apiGatewayDeployment:
     Type: AWS::ApiGateway::Deployment
