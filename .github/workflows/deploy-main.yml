@@ -12,6 +12,12 @@ jobs:
     steps:
       - name: Checkout code from master branch
         uses: actions/checkout@v2
+      
+      - name: Node compress
+        run: zip lambda.zip ./* -r
+      
+      - name: Upload to S3
+        run: aws s3 cp ./lambda.zip s3://lambda-functions
 
       # Configure AWS Credential
       - name: Configure AWS Credentials
