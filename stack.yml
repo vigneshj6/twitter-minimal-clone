@@ -39,7 +39,7 @@ Resources:
       Runtime: nodejs16.x
       Timeout: 30
       Code:
-        S3Bucket: lambda-functions
+        S3Bucket: vigneshj-twitter-clone
         S3Key: lambda.zip
   
   apiGateway:
