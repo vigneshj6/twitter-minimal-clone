@@ -83,11 +83,20 @@ Resources:
     Properties:
       RestApiId: !Ref apiGateway
       StageName: stage
-      
+      StageDescription:
+        Description: Stage - DEV
+        LoggingLevel: INFO
+        MetricsEnabled: True
+        MethodSettings:
+          - ResourcePath: "/sample-lambda-dev"
+            HttpMethod: "POST"
+            LoggingLevel: INFO
+            MetricsEnabled: True
+
   lambdaApiGatewayInvoke:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName: !GetAtt lambdaFunction.Arn
       Principal: apigateway.amazonaws.com
-      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/stage/POST/
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/*/POST/sample-lambda-dev
