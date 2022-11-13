@@ -62,9 +62,7 @@ Resources:
         Uri: !Sub
           - arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambdaFunction.Arn}/invocations
           - lambdaArn: !GetAtt lambdaFunction.Arn
-      ResourceId: !GetAtt
-        - apiGateway
-        - RootResourceId
+      ResourceId: !GetAtt apiGateway.RootResourceId
       RestApiId: twitter-api
 
   apiGatewayDeployment:
