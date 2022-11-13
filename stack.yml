@@ -81,5 +81,5 @@ Resources:
     DependsOn:
       - apiGatewayRootMethod
     Properties:
-      RestApiId: twitter-api
+      RestApiId: !Ref apiGateway
       StageName: stage
