@@ -53,7 +53,7 @@ Resources:
     DependsOn: secretRDSAttschment
     Properties:
       SecretId: !Ref rdsRotationSecret
-      RotationLambdaARN: SecretsManagerRDSPostgreSQLRotationMultiUser
+      RotationLambdaARN: SecretsManagerRDSMySQLRotationSingleUser.Arn
       RotationRules:
         AutomaticallyAfterDays: 30
 
