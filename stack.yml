@@ -10,21 +10,25 @@ Parameters:
     Description: DB User Name
     Type: String
     Default: devuser
+  RDSDBName:
+    Description: DB Name
+    Type: String
+    Default: twitterdb
 
 Resources:
   rdsRotationSecret:
     Type: AWS::SecretsManager::Secret
     Properties:
-    Description: 'RDS postgres Instance'
-    GenerateSecretString:
+      Description: 'RDS postgres Instance'
+      GenerateSecretString:
         SecretStringTemplate: !Sub '{"username": "${!Ref RDSUserName}"}'
         GenerateStringKey: 'password'
         PasswordLength: 16
         ExcludeCharacters: '"@/\'
 
   dbInstance:
-      Type: AWS::RDS::DBInstance
-      Properties:
+    Type: AWS::RDS::DBInstance
+    Properties:
       AllocatedStorage: 20
       DBInstanceClass: db.t2.micro
       DBName: !Ref RDSDBName
@@ -40,17 +44,17 @@ Resources:
   secretRDSAttschment:
     Type: AWS::SecretsManager::SecretTargetAttachment
     Properties:
-    SecretId: !Ref rdsRotationSecret
-    TargetId: !Ref dbInstance
-    TargetType: AWS::RDS::DBInstance
+      SecretId: !Ref rdsRotationSecret
+      TargetId: !Ref dbInstance
+      TargetType: AWS::RDS::DBInstance
 
   secretRotationSchedule:
     Type: AWS::SecretsManager::RotationSchedule
     DependsOn: secretRDSAttschment
     Properties:
-    SecretId: !Ref rdsRotationSecret
-    RotationLambdaARN: !GetAtt MyRotationLambda.Arn
-    RotationRules:
+      SecretId: !Ref rdsRotationSecret
+      RotationLambdaARN: SecretsManagerRDSPostgreSQLRotationMultiUser
+      RotationRules:
         AutomaticallyAfterDays: 30
 
   lambdaFunctionIamRole:
