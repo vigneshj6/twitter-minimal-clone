@@ -84,7 +84,7 @@ Resources:
         S3Key: lambda.zip
       Environment:
         Variables:
-          databaseHost: !GetAtt database.Endpoint.Address
+          databaseHost: !GetAtt dbInstance.Endpoint.Address
           databaseName: !Ref RDSDBName
           databaseUser: !Ref RDSUserName
           databasePassword: !Sub '{{resolve:secretsmanager:password:SecretString:password}}'
