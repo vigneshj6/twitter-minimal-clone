@@ -23,7 +23,7 @@ jobs:
         run: cd src/functions && npm run build
       
       - name: Node compress
-        run: zip lambda.zip ./dist-functions/* -r
+        run: ls && zip lambda.zip ./dist-functions/* -r
 
       # Configure AWS Credential
       - name: Configure AWS Credentials
