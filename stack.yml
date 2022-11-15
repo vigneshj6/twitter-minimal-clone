@@ -19,6 +19,7 @@ Resources:
   rdsRotationSecret:
     Type: AWS::SecretsManager::Secret
     Properties:
+      Name: 'password'
       Description: 'RDS postgres Instance'
       GenerateSecretString:
         SecretStringTemplate: !Sub '{"username": "${!Ref RDSUserName}"}'
@@ -47,15 +48,6 @@ Resources:
       SecretId: !Ref rdsRotationSecret
       TargetId: !Ref dbInstance
       TargetType: AWS::RDS::DBInstance
-
-  secretRotationSchedule:
-    Type: AWS::SecretsManager::RotationSchedule
-    DependsOn: secretRDSAttschment
-    Properties:
-      SecretId: !Ref rdsRotationSecret
-      RotationLambdaARN: SecretsManagerRDSMySQLRotationSingleUser.Arn
-      RotationRules:
-        AutomaticallyAfterDays: 30
 
   lambdaFunctionIamRole:
     Type: AWS::IAM::Role
@@ -90,6 +82,12 @@ Resources:
       Code:
         S3Bucket: vigneshj-twitter-clone
         S3Key: lambda.zip
+      Environment:
+        Variables:
+          databaseHost: !GetAtt database.Endpoint.Address
+          databaseName: !Ref RDSDBName
+          databaseUser: !Ref RDSUserName
+          databasePassword: !Sub '{{resolve:secretsmanager:password:SecretString:password}}'
   
   apiGateway:
     Type: AWS::ApiGateway::RestApi
