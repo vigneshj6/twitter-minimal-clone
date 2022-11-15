@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout code from master branch
         uses: actions/checkout@v2
+      
+      - name: Install packages
+        run: npm install
 
       - name: Install packages for Lambda
         run: cd src/functions && npm install
