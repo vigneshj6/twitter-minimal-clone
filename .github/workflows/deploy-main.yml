@@ -21,6 +21,9 @@ jobs:
 
       - name: Install packages for Lambda
         run: cd src/functions && npm run build
+
+      - name: Copy dependencies
+        run: cp -R src/functions/node_modules ./dist-functions/node_modules
       
       - name: Node compress
         run: ls && zip lambda.zip ./dist-functions/* -r
