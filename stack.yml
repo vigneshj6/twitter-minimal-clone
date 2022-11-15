@@ -32,7 +32,7 @@ Resources:
       AllocatedStorage: 20
       DBInstanceClass: db.t2.micro
       DBName: !Ref RDSDBName
-      Engine: postgres
+      Engine: mysql
       MasterUsername: !Ref RDSUserName
       MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref rdsRotationSecret, ':SecretString:password}}' ]]
       MultiAZ: False
