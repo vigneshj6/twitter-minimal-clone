@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+     "types": ["node"],
+     "lib": [
+        "ES2019"
+     ],
+     "target": "ES2017",
+     "module": "commonjs",
+     "rootDir": "src",
+     "outDir": "dist",
+     "declaration": false,
+     "inlineSources": false,
+     "strict": false,
+     "skipLibCheck": true,
+     "sourceMap": true,
+     "emitDecoratorMetadata": true,
+     "experimentalDecorators": true,
+     "esModuleInterop": true
+  },
+  "include": [
+     "lib/**/*.ts",
+     "src/**/*.ts"
+  ],
+  "exclude": [
+     "node_modules"
+  ],
+  "typeRoots": [
+     "../node_modules/@types/index.d.ts"
+  ]
+}

@@ -12,9 +12,15 @@ jobs:
     steps:
       - name: Checkout code from master branch
         uses: actions/checkout@v2
+
+      - name: Install packages for Lambda
+        run: cd src/functions && npm install
+
+      - name: Install packages for Lambda
+        run: cd src/functions && npm run build
       
       - name: Node compress
-        run: zip lambda.zip ./* -r
+        run: zip lambda.zip ./dist-functions/* -r
 
       # Configure AWS Credential
       - name: Configure AWS Credentials

@@ -1,0 +1,68 @@
+{
+   "name": "twitter-clone-apis",
+   "version": "1.0.0",
+   "description": "Twitter Backend API",
+   "scripts": {
+      "build": "tsc",
+      "build-prod": "tsc -p .",
+      "debug": "nodemon",
+      "lint": "./node_modules/.bin/tslint --project ./tsconfig.json -e 'src/test/**/*.*'",
+      "lint:fix": "./node_modules/.bin/tslint --project ./tsconfig.json -e 'src/test/**/*.*'  --fix",
+      "test": "ENV=test nyc mocha -r ts-node/register -r dotenv/config src/test/**/*.spec.ts --exit",
+      "coverage": ". && nyc -r text-summary -r html npm run test",
+      "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+      "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./ormconfig.ts",
+      "db:drop": "npm run typeorm:cli schema:drop",
+      "migration:generate": "typeorm migration:create -n",
+      "db:create": "ts-node src/script/create-db.ts",
+      "db:migrate": "npm run typeorm:cli migration:run",
+      "db:revert": "npm run typeorm:cli migration:revert",
+      "db:sync": "npm run typeorm:cli schema:sync && npm run db:migrate"
+   },
+   "keywords": [
+      "typescript",
+      "template"
+   ],
+   "license": "ISC",
+   "nyc": {
+      "cache": false,
+      "check-coverage": false,
+      "extension": [
+         ".ts"
+      ],
+      "include": [
+         "src/**/*.ts"
+      ],
+      "exclude": [
+         "coverage/**",
+         "src/test/**",
+         "src/config/environments",
+         "src/lib/interfaces",
+         "node_modules/**"
+      ],
+      "require": [
+         "ts-node/register"
+      ],
+      "sourceMap": false,
+      "reporter": [
+         "html",
+         "text-summary"
+      ],
+      "all": true,
+      "instrument": true
+   },
+   "dependencies": {
+      "@types/node": "^18.11.9",
+      "aws-lambda": "^1.0.7",
+      "aws-sdk": "^2.1253.0",
+      "pg": "^8.4.0",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "^0.3.10"
+   },
+   "devDependencies": {
+      "nodemon": "^2.0.20",
+      "ts-node": "^10.9.1",
+      "ts-node-dev": "^2.0.0",
+      "typescript": "^4.8.4"
+   }
+}

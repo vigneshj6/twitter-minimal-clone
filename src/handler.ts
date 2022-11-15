@@ -1,13 +1,13 @@
-"use strict";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
-module.exports.hello = async (event) => {
+export const handler = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log("****  twitter clone ****");
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
         message: "function executed successfully!",
-        input: event,
+        input: _event,
       },
       null,
       2
