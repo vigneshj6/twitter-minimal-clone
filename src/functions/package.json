@@ -31,7 +31,8 @@
          ".ts"
       ],
       "include": [
-         "src/**/*.ts"
+         "src/**/*.ts",
+         "../entity/*.ts"
       ],
       "exclude": [
          "coverage/**",
