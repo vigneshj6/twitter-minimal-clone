@@ -4,9 +4,9 @@
       "moduleResolution": "node",
      "types": ["node"],
      "lib": [
-        "ES2019"
+        "ES6"
      ],
-     "target": "ES2019",
+     "target": "ES6",
      "module": "commonjs",
      "rootDir": "..",
      "outDir": "../../dist-functions",
