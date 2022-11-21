@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+      "moduleResolution": "node",
      "types": ["node"],
      "lib": [
         "ES2019"
