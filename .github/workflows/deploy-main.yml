@@ -19,7 +19,7 @@ jobs:
       - name: Install packages for Lambda
         run: cd src/functions && npm install
 
-      - name: Install packages for Lambda
+      - name: Build Lambda
         run: cd src/functions && npm run build
 
       - name: Copy dependencies

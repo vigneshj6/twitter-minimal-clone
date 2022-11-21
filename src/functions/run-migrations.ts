@@ -13,12 +13,13 @@ export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayP
     database: process.env.databaseName,
     synchronize: true,
     logging: false,
-    entities: ["../entity/**"],
-    migrations: [],
+    entities: ["../../../dist-functions/entity/**"],
+    migrations: ["../../../dist-functions/migrations/**"],
     subscribers: [],
   });
   await dataSource.initialize()
   await dataSource.runMigrations({transaction:'all'})
+  console.log("Done")
   return { 
     statusCode:200, 
     body: JSON.stringify(

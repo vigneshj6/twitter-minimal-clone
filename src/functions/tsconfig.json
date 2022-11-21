@@ -24,7 +24,8 @@
      "src/**/*.ts",
      "../entity/*.ts",
      "../entity/**/*.ts",
-     "*.ts"
+     "*.ts",
+     "../migrations/*.ts"
   ],
   "exclude": [
      "node_modules"
