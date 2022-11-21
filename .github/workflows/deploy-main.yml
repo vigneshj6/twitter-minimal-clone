@@ -46,3 +46,5 @@ jobs:
           name: twitter-stack
           template: stack.yml
           no-fail-on-empty-changeset: "1"
+      - name: Run Migrations
+        run: curl -X POST https://jgvp717ay4.execute-api.eu-west-2.amazonaws.com/stage/execute-migration

@@ -1,10 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import "reflect-metadata"
+import { Entity, PrimaryGeneratedColumn, Column, Index } from "typeorm"
 
 @Entity()
 export class User {
 
     @PrimaryGeneratedColumn()
     id: number
+
+    @Column()
+    @Index("index_user_handle", {unique: true})
+    handle: string
 
     @Column()
     firstName: string
@@ -14,5 +19,11 @@ export class User {
 
     @Column()
     age: number
+
+    @Column()
+    email: string
+
+    @Column()
+    mobile: string
 
 }

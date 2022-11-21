@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { FileType } from "./enum/FileType";
-import { Post } from "./Post";
+import { FileType } from "./enum/file-type";
+import { Post } from "./post";
 
 @Entity()
 export class Attachment {

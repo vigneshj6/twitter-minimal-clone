@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Index } from "typeorm"
-import { User } from "./User";
+import { User } from "./user";
 
 @Entity()
 @Index(["followee", "follower"], { unique: true })

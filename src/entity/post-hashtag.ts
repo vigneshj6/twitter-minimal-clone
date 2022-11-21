@@ -1,6 +1,6 @@
 import { Entity, Index, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { Hashtag } from "./Hashtag";
-import { Post } from "./Post";
+import { Hashtag } from "./hashtag";
+import { Post } from "./post";
 
 @Entity()
 @Index(["postId", "hashtagId"], { unique: true })
@@ -13,7 +13,7 @@ export class PostHashtag {
    @ManyToOne(type => Post)
    postId: Post;
 
-   @Index("index_post_hash_tag_post_id")
+   @Index("index_post_hash_tag_hash_tag")
    @ManyToOne(type => Hashtag)
    hashtagId: Hashtag;
 

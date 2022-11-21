@@ -4,7 +4,7 @@ import { DataSource } from 'typeorm';
 
 export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log("****  twitter clone ****");
-  new DataSource({
+  let dataSource = new DataSource({
     type: "postgres",
     host: process.env.databaseHost,
     port: 5432,
@@ -16,15 +16,18 @@ export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayP
     entities: ["../entity/**"],
     migrations: [],
     subscribers: [],
-}).runMigrations({transaction:'all'})
-  return {
-    statusCode: 200,
+  });
+  await dataSource.initialize()
+  await dataSource.runMigrations({transaction:'all'})
+  return { 
+    statusCode:200, 
     body: JSON.stringify(
       {
         message: "function executed successfully!",
+        input: _event,
       },
       null,
       2
     ),
-  };
+  }     
 };

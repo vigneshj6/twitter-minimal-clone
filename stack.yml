@@ -89,6 +89,7 @@ Resources:
           databaseUser: !Ref RDSUserName
           databasePassword: !Sub '{{resolve:secretsmanager:password:SecretString:password}}'
           version: '1.0.0'
+    DependsOn: dbInstance
   
   apiGateway:
     Type: AWS::ApiGateway::RestApi
@@ -136,7 +137,7 @@ Resources:
         LoggingLevel: INFO
         MetricsEnabled: True
         MethodSettings:
-          - ResourcePath: "/sample-lambda-dev"
+          - ResourcePath: "/execute-migration"
             HttpMethod: "POST"
             LoggingLevel: INFO
             MetricsEnabled: True
@@ -147,4 +148,4 @@ Resources:
       Action: lambda:InvokeFunction
       FunctionName: !GetAtt lambdaFunction.Arn
       Principal: apigateway.amazonaws.com
-      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/*/POST/sample-lambda-dev
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/*/POST/execute-migration

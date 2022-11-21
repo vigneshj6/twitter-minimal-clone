@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Index } from "typeorm"
 
 @Entity()
 export class Hashtag {
@@ -10,9 +10,9 @@ export class Hashtag {
    tag: string; 
 
    @Column({ type: 'timestamptz' })
-   created_at: Date;
+   createdAt: Date;
 
    @Column({ type: 'timestamptz' })
-   updated_at: Date;
+   updatedAt: Date;
 
 }

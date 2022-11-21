@@ -1,6 +1,5 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { User } from "./entity/User"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -11,7 +10,7 @@ export const AppDataSource = new DataSource({
     database: "twitter",
     synchronize: true,
     logging: false,
-    entities: ["src/**/entity/**"],
-    migrations: [],
+    entities: ["dist/**/entity/**"],
+    migrations: ["src/**/migrations/**"],
     subscribers: [],
 })

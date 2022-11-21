@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
-import { Attachment } from "./Attachment";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Attachment } from "./attachment";
+import { User } from "./user";
 
 @Entity()
 export class Post {
@@ -10,8 +11,8 @@ export class Post {
    @Column() 
    text: string; 
    
-   @Column() 
-   post_by: number; 
+   @ManyToOne(type => User)
+   postBy: User; 
 
    @Column({ type: 'timestamptz' })
    timestamp: Date;
