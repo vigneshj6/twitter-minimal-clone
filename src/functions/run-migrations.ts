@@ -14,7 +14,7 @@ export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayP
     synchronize: true,
     logging: false,
     entities: ["../entity/**"],
-    migrations: ["../../../dist-functions/migrations/**"],
+    migrations: ["../migrations/**"],
     subscribers: [],
   });
   await dataSource.initialize()
