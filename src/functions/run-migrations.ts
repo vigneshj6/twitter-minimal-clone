@@ -13,7 +13,7 @@ export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayP
     database: process.env.databaseName,
     synchronize: true,
     logging: false,
-    entities: ["../../../dist-functions/entity/**"],
+    entities: ["../entity/**"],
     migrations: ["../../../dist-functions/migrations/**"],
     subscribers: [],
   });
