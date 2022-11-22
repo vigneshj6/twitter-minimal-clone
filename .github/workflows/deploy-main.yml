@@ -17,7 +17,7 @@ jobs:
         run: cd src/functions && npm install
 
       - name: Build Lambda
-        run: cd src/functions && npm run build
+        run: cd src/functions && ls -l && npm run build
 
       - name: Copy dependencies
         run: cp -R src/functions/node_modules ./dist-functions/node_modules
