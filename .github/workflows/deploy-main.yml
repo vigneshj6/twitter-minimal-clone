@@ -64,4 +64,4 @@ jobs:
         run: echo ${{ steps.awsdeploy.outputs }}
 
       - name: Run Migrations
-        run: curl -X POST https://jgvp717ay4.execute-api.eu-west-2.amazonaws.com/stage/execute-migration
+        run: curl -X POST "${{ steps.awsdeploy.outputs.RootUrl }}/stage/execute-migration"
