@@ -137,7 +137,7 @@ Resources:
         LoggingLevel: INFO
         MetricsEnabled: True
         MethodSettings:
-          - ResourcePath: "/execute-migration"
+          - ResourcePath: !Sub sample-lambda-${Environment}
             HttpMethod: "POST"
             LoggingLevel: INFO
             MetricsEnabled: True
@@ -148,7 +148,7 @@ Resources:
       Action: lambda:InvokeFunction
       FunctionName: !GetAtt lambdaFunction.Arn
       Principal: apigateway.amazonaws.com
-      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/*/POST/execute-migration
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/*/POST/sample-lambda-${Environment}
 Outputs:
   RootUrl: 
     Description: Root URL of the API gateway,
