@@ -17,7 +17,7 @@ jobs:
         run: npm ci
 
       - name: Install packages for Lambda
-        run: cd src/functions && npm ci
+        run: cd src/functions && npm install
 
       - name: Build Lambda
         run: cd src/functions && npm run build
