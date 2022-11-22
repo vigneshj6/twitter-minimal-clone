@@ -51,10 +51,17 @@ jobs:
 
       # Deploy to AWS CloudFormation
       - name: Deploy to AWS CloudFormation
+        id: awsdeploy
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: twitter-stack
           template: stack.yml
           no-fail-on-empty-changeset: "1"
+      - name: Print Out
+        run: echo ${{ steps.awsdeploy.outputs.RootUrl }}
+
+      - name: Print Out
+        run: echo ${{ steps.awsdeploy.outputs }}
+
       - name: Run Migrations
         run: curl -X POST https://jgvp717ay4.execute-api.eu-west-2.amazonaws.com/stage/execute-migration
