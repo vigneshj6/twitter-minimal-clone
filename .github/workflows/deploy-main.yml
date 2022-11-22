@@ -12,9 +12,6 @@ jobs:
     steps:
       - name: Checkout code from master branch
         uses: actions/checkout@v2
-      
-      - name: Install packages
-        run: npm install
 
       - name: Install packages for Lambda
         run: cd src/functions && npm install
@@ -24,6 +21,9 @@ jobs:
 
       - name: Copy dependencies
         run: cp -R src/functions/node_modules ./dist-functions/node_modules
+
+      - name: Install packages
+        run: npm install
       
       - name: Node compress
         run: ls && zip lambda.zip ./dist-functions/* -r
