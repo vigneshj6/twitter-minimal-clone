@@ -16,7 +16,7 @@ jobs:
       - name: Install packages
         run: npm install
 
-      - name: Install packages
+      - name: Build application
         run: npm run build
 
       - name: Install packages for Lambda

@@ -21,7 +21,9 @@
   },
   "include": [
      "lib/**/*.ts",
-     "src/**/*.ts"
+     "src/**/*.ts",
+     "src/entity/*.ts",
+     "src/entity/**/*.ts",
   ],
   "exclude": [
      "node_modules"
