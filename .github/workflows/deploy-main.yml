@@ -30,8 +30,8 @@ jobs:
         
       
       - name: Copy migrations to functions
-        run: cp -R dist/entity dist-functions/entity
-
+        run: cp -R dist/migrations dist-functions/migrations
+        
       - name: Copy dependencies
         run: cp -R src/functions/node_modules ./dist-functions/node_modules
       
