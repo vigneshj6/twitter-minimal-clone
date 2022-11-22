@@ -1,7 +1,7 @@
-import { AppDataSource } from "../data-source";
-import { Post } from "../entity/post";
-import { User } from "../entity/user";
-import { ICreateUserOutput, UserService } from "./user-services";
+import { AppDataSource } from "src/data-source";
+import { Post } from "src/entity/post";
+import { User } from "src/entity/user";
+import { ICreateUserOutput, UserService } from "src/services/user-services";
 import AWS from 'aws-sdk'
 
 var sqs = new AWS.SQS({apiVersion: '2012-11-05'});

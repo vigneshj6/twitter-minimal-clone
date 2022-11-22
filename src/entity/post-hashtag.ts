@@ -1,6 +1,6 @@
 import { Entity, Index, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { Hashtag } from "./hashtag";
-import { Post } from "./post";
+import { Hashtag } from "src/entity/hashtag";
+import { Post } from "src/entity/post";
 
 @Entity()
 @Index(["postId", "hashtagId"], { unique: true })

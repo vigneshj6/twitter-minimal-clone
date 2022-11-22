@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
-import { Attachment } from "./attachment";
-import { User } from "./user";
+import { Attachment } from "src/entity/attachment";
+import { User } from "src/entity/user";
 
 @Entity()
 export class Post {

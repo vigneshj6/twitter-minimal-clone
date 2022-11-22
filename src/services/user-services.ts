@@ -1,5 +1,5 @@
-import { AppDataSource } from "../data-source";
-import { Follower } from "../entity/follower";
+import { AppDataSource } from "src/data-source";
+import { Follower } from "src/entity/follower";
 import { User } from "../entity/user";
 
 export interface ICreateUserInput {
