@@ -1,37 +1,34 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-      "moduleResolution": "node",
-     "types": ["node"],
-     "lib": [
-        "ES6"
-     ],
-     "target": "ES6",
-     "module": "commonjs",
-     "rootDir": "..",
-     "outDir": "../../dist-functions",
-     "declaration": false,
-     "inlineSources": false,
-     "strict": false,
-     "skipLibCheck": true,
-     "sourceMap": true,
-     "emitDecoratorMetadata": true,
-     "experimentalDecorators": true,
-     "esModuleInterop": true,
-     "allowSyntheticDefaultImports": true
-  },
-  "include": [
-     "lib/**/*.ts",
-     "src/**/*.ts",
-     "../entity/*.ts",
-     "../entity/**/*.ts",
-     "*.ts",
-     "../migrations/*.ts"
-  ],
-  "exclude": [
-     "node_modules"
-  ],
-  "typeRoots": [
-     "../node_modules/@types/index.d.ts"
-  ]
-}
+   "compileOnSave": false,
+   "compilerOptions": {
+      "types": ["node"],
+      "lib": [
+         "ES2019"
+      ],
+      "target": "ES2017",
+      "module": "commonjs",
+      "rootDir": "..",
+      "outDir": "../../dist-functions",
+      "declaration": false,
+      "inlineSources": false,
+      "strict": false,
+      "skipLibCheck": true,
+      "sourceMap": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true
+   },
+   "include": [
+      "lib/**/*.ts",
+      "src/**/*.ts",
+      "../entity/*.ts",
+      "../entity/**/*.ts",
+      "*.ts"
+   ],
+   "exclude": [
+      "node_modules"
+   ],
+   "typeRoots": [
+      "../node_modules/@types/index.d.ts"
+   ]
+ }
