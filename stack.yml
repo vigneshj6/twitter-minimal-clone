@@ -149,3 +149,7 @@ Resources:
       FunctionName: !GetAtt lambdaFunction.Arn
       Principal: apigateway.amazonaws.com
       SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/*/POST/execute-migration
+Outputs:
+  RootUrl: 
+    Description: Root URL of the API gateway,
+    Value: !Join ['', ['https://', !Ref apiGateway , '.execute-api.eu-west-2' , '.amazonaws.com']]
