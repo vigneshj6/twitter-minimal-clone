@@ -22,8 +22,6 @@
    "include": [
       "lib/**/*.ts",
       "src/**/*.ts",
-      "../entity/*.ts",
-      "../entity/**/*.ts",
       "*.ts"
    ],
    "exclude": [

@@ -13,17 +13,27 @@ jobs:
       - name: Checkout code from master branch
         uses: actions/checkout@v2
 
+      - name: Install packages
+        run: npm install
+
+      - name: Install packages
+        run: npm run build
+
       - name: Install packages for Lambda
         run: cd src/functions && npm install
 
       - name: Build Lambda
         run: cd src/functions && ls -l && npm run build
 
+      - name: Copy entity to functions
+        run: cp -R dist/entity dist-functions/entity
+        
+      
+      - name: Copy migrations to functions
+        run: cp -R dist/entity dist-functions/entity
+
       - name: Copy dependencies
         run: cp -R src/functions/node_modules ./dist-functions/node_modules
-
-      - name: Install packages
-        run: npm install
       
       - name: Node compress
         run: ls && zip lambda.zip ./dist-functions/* -r
