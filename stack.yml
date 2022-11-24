@@ -132,13 +132,7 @@ Resources:
     Properties:
       RestApiId: !Ref apiGateway
       StageName: stage
-      StageDescription:
-        Description: Stage - DEV
-        LoggingLevel: INFO
-        MethodSettings:
-          - ResourcePath: !Sub sample-lambda-${Environment}
-            HttpMethod: "POST"
-            LoggingLevel: INFO
+      Description: "stagging"
 
   lambdaApiGatewayInvoke:
     Type: AWS::Lambda::Permission
