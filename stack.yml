@@ -75,7 +75,7 @@ Resources:
       Description: "Sample Lambda"
       FunctionName: !Sub sample-lambda-${Environment}
       Handler: dist-functions/functions/run-migrations.execute
-      MemorySize: 128
+      MemorySize: 512
       Role: !GetAtt lambdaFunctionIamRole.Arn
       Runtime: nodejs16.x
       Timeout: 30
