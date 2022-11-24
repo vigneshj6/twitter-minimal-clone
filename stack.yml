@@ -135,12 +135,10 @@ Resources:
       StageDescription:
         Description: Stage - DEV
         LoggingLevel: INFO
-        MetricsEnabled: True
         MethodSettings:
           - ResourcePath: !Sub sample-lambda-${Environment}
             HttpMethod: "POST"
             LoggingLevel: INFO
-            MetricsEnabled: True
 
   lambdaApiGatewayInvoke:
     Type: AWS::Lambda::Permission
