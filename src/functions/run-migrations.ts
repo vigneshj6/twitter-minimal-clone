@@ -1,28 +1,12 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { AppDataSource } from 'data-source';
 import { ALL } from 'dns';
 import { DataSource } from 'typeorm';
 
 export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log("****  twitter clone ****");
-  console.log(process.env.databaseHost);
-  console.log(process.env.databaseUser);
-  console.log(process.env.databasePassword);
-  console.log(process.env.databaseName);
-  let dataSource = new DataSource({
-    type: "postgres",
-    host: process.env.databaseHost,
-    port: 5432,
-    username: process.env.databaseUser,
-    password: process.env.databasePassword,
-    database: process.env.databaseName,
-    synchronize: true,
-    logging: false,
-    entities: ["../entity/**"],
-    migrations: ["../migrations/**"],
-    subscribers: [],
-  });
-  await dataSource.initialize()
-  await dataSource.runMigrations({transaction:'all'})
+  await AppDataSource.initialize()
+  await AppDataSource.runMigrations({transaction:'all'})
   console.log("Done")
   return { 
     statusCode:200, 
