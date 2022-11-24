@@ -10,6 +10,7 @@ export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayP
   console.log(process.env.databasePassword);
   console.log(process.env.databaseName);
   await AppDataSource.initialize()
+  console.log(await AppDataSource.migrations)
   await AppDataSource.runMigrations({transaction:'all'})
   console.log("Done")
   return { 
