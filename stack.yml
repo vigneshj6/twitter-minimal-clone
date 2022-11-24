@@ -78,7 +78,7 @@ Resources:
       MemorySize: 512
       Role: !GetAtt lambdaFunctionIamRole.Arn
       Runtime: nodejs16.x
-      Timeout: 30
+      Timeout: 300
       Code:
         S3Bucket: vigneshj-twitter-clone
         S3Key: lambda.zip
