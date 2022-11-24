@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { AppDataSource } from 'data-source';
+import { AppDataSource } from './data-source';
 import { ALL } from 'dns';
 import { DataSource } from 'typeorm';
 
