@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
     database: process.env.databaseName || "twitter",
     synchronize: false,
     logging: false,
-    entities: ["entity/**"],
-    migrations: ["migrations/**"],
+    entities: ["dist-functions/entity/**"],
+    migrations: ["dist-functions/migrations/**"],
     subscribers: [],
 })
