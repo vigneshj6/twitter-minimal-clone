@@ -5,13 +5,14 @@ import { DataSource } from 'typeorm';
 
 export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log("****  twitter clone ****");
-  console.log(process.env.databaseHost);
+  console.log(AppDataSource);
   console.log(process.env.databaseUser);
   console.log(process.env.databasePassword);
   console.log(process.env.databaseName);
   await AppDataSource.initialize()
+  await AppDataSource.runMigrations()
   console.log(await AppDataSource.migrations)
-  await AppDataSource.runMigrations({transaction:'all'})
+  console.log("Call migration")
   console.log("Done")
   return { 
     statusCode:200, 
@@ -25,3 +26,5 @@ export const execute = async (_event: APIGatewayProxyEvent): Promise<APIGatewayP
     ),
   }     
 };
+
+//execute(null);
