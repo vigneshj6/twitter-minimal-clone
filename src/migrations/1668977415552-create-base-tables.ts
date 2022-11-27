@@ -5,6 +5,7 @@ export class createBaseTables1668977415552 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "hashtag" ("id" SERIAL NOT NULL, "tag" character varying NOT NULL, "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL, "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL, CONSTRAINT "PK_cb36eb8af8412bfa978f1165d78" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TYPE "attachment_filetype_enum" AS ENUM('image','video')`);
         await queryRunner.query(`CREATE TABLE "attachment" ("id" SERIAL NOT NULL, "url" character varying NOT NULL, "fileType" "public"."attachment_filetype_enum" NOT NULL DEFAULT 'image', "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL, "postId" integer, CONSTRAINT "PK_d2a80c3a8d467f08a750ac4b420" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "user" ("id" SERIAL NOT NULL, "handle" character varying NOT NULL, "firstName" character varying NOT NULL, "lastName" character varying NOT NULL, "age" integer NOT NULL, "email" character varying NOT NULL, "mobile" character varying NOT NULL, CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE UNIQUE INDEX "index_user_handle" ON "user" ("handle") `);
@@ -41,6 +42,7 @@ export class createBaseTables1668977415552 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "post"`);
         await queryRunner.query(`DROP INDEX "public"."index_user_handle"`);
         await queryRunner.query(`DROP TABLE "user"`);
+        await queryRunner.query(`DROP TYPE "attachment_filetype_enum"`);
         await queryRunner.query(`DROP TABLE "attachment"`);
         await queryRunner.query(`DROP TABLE "hashtag"`);
     }
