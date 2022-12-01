@@ -150,17 +150,18 @@ Resources:
       SecurityGroups:
         - !Ref appSecurityGroup
       UserData: 
-        Fn::Base64: !Sub |
-        #!/bin/bash
-        export databaseHost=${!GetAtt dbInstance.Endpoint.Address}
-        export databaseName=${!Ref RDSDBName}
-        export databaseUser=${!Ref RDSUserName}
-        export databasePassword='{{resolve:secretsmanager:password:SecretString:password}}' 
-        apt-get update -qq
-        apt-get install -y apt-transport-https ca-certificates
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-        . ~/.nvm/nvm.sh
-        nvm install --lts
+        Fn::Base64: 
+          !Sub |
+            #!/bin/bash
+            export databaseHost=${!GetAtt dbInstance.Endpoint.Address}
+            export databaseName=${RDSDBName}
+            export databaseUser=${!Ref RDSUserName}
+            export databasePassword='{{resolve:secretsmanager:password:SecretString:password}}' 
+            apt-get update -qq
+            apt-get install -y apt-transport-https ca-certificates
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+            . ~/.nvm/nvm.sh
+            nvm install --lts
 
   appSecurityGroup:
     Type: AWS::EC2::SecurityGroup
