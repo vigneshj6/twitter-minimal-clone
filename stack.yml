@@ -141,6 +141,41 @@ Resources:
       FunctionName: !GetAtt lambdaFunction.Arn
       Principal: apigateway.amazonaws.com
       SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${apiGateway}/*/POST/sample-lambda-${Environment}
+
+  application:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-a58d0dc5
+      KeyName: aws-key1
+      SecurityGroups:
+        - !Ref appSecurityGroup
+      UserData: !Base64 |
+        #!/bin/bash
+        export databaseHost=${!GetAtt dbInstance.Endpoint.Address}
+        export databaseName=${!Ref RDSDBName}
+        export databaseUser=${!Ref RDSUserName}
+        export databasePassword='{{resolve:secretsmanager:password:SecretString:password}}' 
+        apt-get update -qq
+        apt-get install -y apt-transport-https ca-certificates
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+        . ~/.nvm/nvm.sh
+        nvm install --lts
+
+  appSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: for the app nodes that allow ssh, http and docker ports
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
+
 Outputs:
   RootUrl: 
     Description: Root URL of the API gateway,
