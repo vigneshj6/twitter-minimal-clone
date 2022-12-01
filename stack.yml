@@ -147,7 +147,6 @@ Resources:
     Properties:
       InstanceType: t2.micro
       ImageId: ami-0f540e9f488cfa27d
-      KeyName: aws-key1
       SecurityGroups:
         - !Ref appSecurityGroup
       UserData: !Base64 |
